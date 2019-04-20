@@ -1,0 +1,6 @@
+{
+    "board": "gamebuino:samd:gamebuino_meta_native",
+    "output": "/Users/max/Desktop/tsf-meta",
+    "sketch": "maxpong.ino",
+    "port": "/dev/cu.usbmodem14101"
+}

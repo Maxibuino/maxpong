@@ -1,0 +1,44 @@
+{
+    "env": {
+        "PACKAGES_PATH": "${env:HOME}/Library/Arduino15/packages",
+        "SKETCHBOOK_PATH": "${env:HOME}/Documents/Arduino"
+    },
+    "configurations": [
+
+        {
+            "name": "Mac",
+            "intelliSenseMode": "gcc-x64",
+            "cStandard": "c11",
+            "cppStandard": "c++11",
+            "compilerPath": "\"${env:PACKAGES_PATH}/arduino/tools/arm-none-eabi-gcc/4.8.3-2014q1/bin/arm-none-eabi-g++\" -mcpu=cortex-m0plus -mthumb -c -g -Os -w -std=gnu++11 -ffunction-sections -fdata-sections -fno-threadsafe-statics -nostdlib --param max-inline-insns-single=500 -fno-rtti -fno-exceptions -MMD -D__SKETCH_NAME__ -DF_CPU=48000000L -DARDUINO=10809 -DARDUINO_SAMD_ZERO -DARDUINO_ARCH_SAMD -save-temps=obj -D__SAMD21G18A__ -DUSB_VID=0x2341 -DUSB_PID=0x804d -DUSBCON -DUSB_MANUFACTURER -DUSB_PRODUCT",
+            "includePath": [
+                "${workspaceFolder}",
+                "${env:PACKAGES_PATH}/arduino/tools/CMSIS/4.5.0/CMSIS/Include",
+                "${env:PACKAGES_PATH}/arduino/tools/CMSIS-Atmel/1.1.0/CMSIS/Device/ATMEL",
+                "${env:PACKAGES_PATH}/gamebuino/hardware/samd/1.2.1/cores/arduino",
+                "${env:PACKAGES_PATH}/gamebuino/hardware/samd/1.2.1/variants/gamebuino_meta",
+                "${env:PACKAGES_PATH}/gamebuino/hardware/samd/1.2.1/libraries/SPI",
+                "${env:SKETCHBOOK_PATH}/libraries/Gamebuino_META/**"
+            ],
+            "browse": {
+                "path": [
+                    "${workspaceFolder}",
+                    "${env:PACKAGES_PATH}/arduino/tools/CMSIS/4.5.0/CMSIS/Include",
+                    "${env:PACKAGES_PATH}/arduino/tools/CMSIS-Atmel/1.1.0/CMSIS/Device/ATMEL",
+                    "${env:PACKAGES_PATH}/gamebuino/hardware/samd/1.2.1/cores/arduino",
+                    "${env:PACKAGES_PATH}/gamebuino/hardware/samd/1.2.1/variants/gamebuino_meta",
+                    "${env:PACKAGES_PATH}/gamebuino/hardware/samd/1.2.1/libraries/SPI",
+                    "${env:SKETCHBOOK_PATH}/libraries/Gamebuino_META/**"
+                ],
+                "limitSymbolsToIncludedHeaders": true
+            },
+            "forcedInclude": [
+                "${env:PACKAGES_PATH}/gamebuino/hardware/samd/1.2.1/cores/arduino/Arduino.h",
+                "${env:SKETCHBOOK_PATH}/libraries/Gamebuino_META/src/Gamebuino-Meta.h"
+            ]
+        }
+
+    ],
+
+    "version": 4
+}

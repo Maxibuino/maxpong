@@ -38,6 +38,15 @@ class DisplayObject
     //Destructeur
     ~DisplayObject();
 
+    //Accesseurs
+    uint8_t getH();
+    int8_t getY();
+
+    //Mutateurs
+    void setY(int8_t y);
+
+    void tick();
+    void draw();
 
 };
 

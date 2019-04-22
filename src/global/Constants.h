@@ -1,0 +1,7 @@
+#ifndef MAXPONG_CONSTANTS
+#define MAXPONG_CONSTANTS
+
+
+
+
+#endif

@@ -13,7 +13,7 @@ class UserController
         Paddle* player;
 
     public
-        UserController(GameEngine* game, Paddle* player);
+        UserController(GameEngine* game,Paddle* player);
         ~UserController();
 
         void tick();

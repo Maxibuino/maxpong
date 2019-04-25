@@ -1,8 +1,12 @@
 #include "UserController.h"
+#include "GameEngine.h"
 
-UserController::UserController(Paddle* player) : player(player) {}
+UserController::UserController(
+    GameEngine* game,
+    Paddle* player) : game(game), player(player) {}
 
 UserController::~UserController () {
+    this->game = NULL;
     this->player = NULL;
 }
 
@@ -16,5 +20,9 @@ void UserController::tick() {
         gb.buttons.released(BUTTON_DOWN)
     ) {
         this->player->stop();
+    }
+
+    if (gb.buttons.pressed(BUTTON_A)){
+        this->game->start();  
     }
 }

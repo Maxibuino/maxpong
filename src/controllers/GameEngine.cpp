@@ -3,7 +3,12 @@
 
 //Initialisition du moteur de jeu
 
+const uint8_t GameEngine::MODE_START = 0;
+const uint8_t GameEngine::MODE_PLAY = 1;
+
 GameEngine::GameEngine() {
+    this->mode = MODE_START;
+
     this->player = new Paddle(
         PADDLE_WIDTH,
         PADDLE_HEIGHT,
@@ -11,13 +16,21 @@ GameEngine::GameEngine() {
         (SCREEN_HEIGHT - PADDLE_HEIGHT) >> 1
     );
 
-    this->controller = new UserController(player);
+    this->ball = new Ball(
+        BALL_SIZE,
+        BALL_SIZE,
+        this->player->getX() + this->player->getW(),
+        this->player->getY() + ((this->player->getH() - BALL_SIZE) >> 1)
+    );
+
+    this->controller = new UserController(this, player);
 }
 
 //Destructeur moteur de jeu
 
 GameEngine::~GameEngine() {
     delete this->controller;
+    delete this->ball;
     delete this->player;
 }
 

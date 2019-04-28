@@ -1,5 +1,5 @@
-#ifndef MAXPONG_GAME_ENGINE
-#define MAXPONG_GAME_ENGINE
+#ifndef POONG_GAME_ENGINE
+#define POONG_GAME_ENGINE
 
 #include "../models/Paddle.h"
 #include "../models/Ball.h"
@@ -8,31 +8,31 @@
 class GameEngine
 {
     private:
-    
-        //prédéfinir les modes de jeu
+
+        // predefined game modes
         static const uint8_t MODE_START;
         static const uint8_t MODE_PLAY;
-        
-        uint8_t mode;
-        
-        Paddle* player;
-        Ball* ball;
-        UserController* controller;
 
-        void attachBallTopPlayer();
-        void throwBall();
-        void HandleScreenBounds();
-        void keepBallWithinScreen();
-        void keepPlayerWithinScreen();
-        void Draw();
+        uint8_t mode;               // game mode
+
+        Paddle* player;             // the player
+        Ball* ball;                 // the ball
+        UserController* controller; // player controller
+
+        void attachBallToPlayer();     // makes the ball follow the player
+        void throwBall();              // throws the ball
+        void handleScreenBounds();     // keeps the ball and the player within the screen
+        void keepBallWithinScreen();   // keeps the ball within the screen
+        void keepPlayerWithinScreen(); // keeps the player within the screen
+        void draw();                   // graphic rendering
 
     public:
-    
-        GameEngine();
-        ~GameEngine();
 
-        void start();
-        void tick();
+        GameEngine();  // constructor
+        ~GameEngine(); // destructor
+
+        void start(); // start the game
+        void tick();  // runtime control hook
 };
 
 #endif

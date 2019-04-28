@@ -2,24 +2,28 @@
 
 const Color DisplayObject::DEFAULT_COLOR = WHITE;
 
-//Initialisation de l'Objet
+// ---------------------------------------------------------
+// Object initialization
+// ---------------------------------------------------------
 
 DisplayObject::DisplayObject(
     uint8_t w,
     uint8_t h,
-    int8_t x,
-    int8_t y,
-    int8_t vx,
-    int8_t vy,
-    Color c) : w(w), h(h), y(y), vx(vx), vy(vy), color(c) {}
+    int8_t  x,
+    int8_t  y,
+    int8_t  vx,
+    int8_t  vy,
+    Color   c) : w(w), h(h), x(x), y(y), vx(vx), vy(vy), color(c) {}
 
-
-// Destructeur
+// ---------------------------------------------------------
+// Object destruction
+// ---------------------------------------------------------
 
 DisplayObject::~DisplayObject() = default;
 
-//Acccesseurs
-//Hauteur
+// ---------------------------------------------------------
+// Accessors
+// ---------------------------------------------------------
 
 // width
 uint8_t DisplayObject::getW() {

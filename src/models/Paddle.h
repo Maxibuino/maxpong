@@ -1,29 +1,29 @@
-#ifndef MAXPONG_PADDLE
-#define MAXPONG_PADDLE
+#ifndef POONG_PADDLE
+#define POONG_PADDLE
 
 #include "DisplayObject.h"
 
 class Paddle : public DisplayObject
 {
-    public :
+    public:
 
-    //Constructeur
-    Paddle(
-        uint_t w,
-        uint_t h,
-        uint_t x,
-        uint_t y,
-        uint_t vx = 0,
-        uint_t vy = 0,
-    );
+        // constructor
+        Paddle(
+            uint8_t w,
+            uint8_t h,
+            int8_t  x,
+            int8_t  y,
+            int8_t  vx = 0,
+            int8_t  vy = 0
+        );
 
-    //Destructeur
-    ~Paddle();
+        // destructor
+        ~Paddle();
 
-    //Commande de mouvement
-    void up();
-    void down();
-    void stop();
+        // motion commands
+        void up();
+        void down();
+        void stop();
 };
 
 #endif

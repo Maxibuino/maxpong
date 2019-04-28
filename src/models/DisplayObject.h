@@ -1,5 +1,5 @@
-#ifndef MAXPONG_DISPLAY_OBJECT
-#define MAXPONG_DISPLAY_OBJECT
+#ifndef POONG_DISPLAY_OBJECT
+#define POONG_DISPLAY_OBJECT
 
 #include <Gamebuino-Meta.h>
 
@@ -7,46 +7,45 @@ class DisplayObject
 {
     protected:
 
-        // couleur par défaut de l'objet
-        static const Color DEFAUT_COLOR;
+        // default display color
+        static const Color DEFAULT_COLOR;
 
-        Color color; //Display Color
+        Color color; // display color
 
-        uint8_t w; //largeur
-        uint8_t h; //hauteur
+        uint8_t w; // width
+        uint8_t h; // height
 
-        int8_t x; //position horizontale
-        int8_t y; //position verticale
+        int8_t  x; // horizontal position
+        int8_t  y; // vertical position
 
-        int8_t vx; //vitesse horizontale
-        int8_t vy; //vitesse verticale
+        int8_t  vx; // horizontal velocity
+        int8_t  vy; // vertical velocity
 
     public:
 
-    //Constructeur
-    DisplayObject(
-        uint8_t w,
-        uint8_t h,
-        int8_t x,
-        int8_t y,
-        int8_t vx = 0,
-        int8_t vy = 0,
-        Color   c = DISPLAY_DEFAULT_COLOR,
+        // constructor
+        DisplayObject(
+            uint8_t w,
+            uint8_t h,
+            int8_t  x,
+            int8_t  y,
+            int8_t  vx = 0,
+            int8_t  vy = 0,
+            Color   c = DISPLAY_DEFAULT_COLOR
+        );
 
-    );
+        // destructor
+        ~DisplayObject();
 
-    //Destructeur
-    ~DisplayObject();
-
-        //Accesseurs
+        // accessors
         uint8_t getW();  // width
-        uintx8_t getH();  // height
+        uint8_t getH();  // height
         int8_t  getX();  // horizontal position
         int8_t  getY();  // vertical position
         int8_t  getVx(); // horizontal velocity
         int8_t  getVy(); // vertical velocity
 
-        //Mutateurs
+        // mutators
         void setX(int8_t x);   // horizontal position
         void setY(int8_t y);   // vertical position
         void setVx(int8_t vx); // horizontal velocity
@@ -54,8 +53,6 @@ class DisplayObject
 
         void move(); // handles motion
         void draw(); // graphic rendering
-
 };
-
 
 #endif

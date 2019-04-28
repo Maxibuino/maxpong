@@ -1,11 +1,15 @@
 #include "GameEngine.h"
 #include "../global/Constants.h"
 
-//Initialisition du moteur de jeu
+// ---------------------------------------------------------
+// Game engine initialization
+// ---------------------------------------------------------
 
+// predefined game modes
 const uint8_t GameEngine::MODE_START = 0;
-const uint8_t GameEngine::MODE_PLAY = 1;
+const uint8_t GameEngine::MODE_PLAY  = 1;
 
+// constructor
 GameEngine::GameEngine() {
     this->mode = MODE_START;
 
@@ -26,7 +30,9 @@ GameEngine::GameEngine() {
     this->controller = new UserController(this, player);
 }
 
-//Destructeur moteur de jeu
+// ---------------------------------------------------------
+// Game engine destruction
+// ---------------------------------------------------------
 
 GameEngine::~GameEngine() {
     delete this->controller;
@@ -34,83 +40,95 @@ GameEngine::~GameEngine() {
     delete this->player;
 }
 
-void attachBallToPlayer() {
+// ---------------------------------------------------------
+// Game rules management
+// ---------------------------------------------------------
+
+void GameEngine::attachBallToPlayer() {
     uint8_t ph = this->player->getH();
-    int8_t py = this->player->getY();
+    int8_t  py = this->player->getY();
     uint8_t bh = this->ball->getH();
     this->ball->setY(py + ((ph - bh) >> 1));
 }
 
 void GameEngine::throwBall() {
-    int8_t vx = 1 + random(BALL_H_SEEPD);
-    int8_t vy = (random(2) ? -1 : 1) * (1 + random(BALL_V_SEEPD));
+    int8_t vx = 1 + random(BALL_H_SPEED);
+    int8_t vy = (random(2) ? -1 : 1) * (1 + random(BALL_V_SPEED));
     this->ball->toss(vx, vy);
 }
 
-//Empêche la raquette de sortir de l'écran
-void GameEngine::handleScreenBounds(){
+void GameEngine::handleScreenBounds() {
     this->keepPlayerWithinScreen();
     if (this->mode == MODE_PLAY) {
         this->keepBallWithinScreen();
     }
 }
 
-void GameEngine::keepBallWithinScreen(){
-    uint8_t w = this->ball->getW();
-    uint8_t h = this->ball->getH();
-    int8_t x = this->ball->getX();
-    int8_t y = this->ball->getY();
-    int8_t vx = this->ball->getVx();
-    int8_t vy = this->ball->getVy();
+void GameEngine::keepBallWithinScreen() {
+    uint8_t w  = this->ball->getW();
+    uint8_t h  = this->ball->getH();
+    int8_t  x  = this->ball->getX();
+    int8_t  y  = this->ball->getY();
+    int8_t  vx = this->ball->getVx();
+    int8_t  vy = this->ball->getVy();
 
     if (x < 0 || x + w > SCREEN_WIDTH) {
         this->ball->setX(x - vx);
         this->ball->setVx(-vx);
     }
 
-    if (x < 0 || y + h > SCREEN_HEIGHT) {
+    if (y < 0 || y + h > SCREEN_HEIGHT) {
         this->ball->setY(y - vy);
         this->ball->setVy(-vy);
     }
-
 }
 
-void GameEngine:::keepPlayerWithinScreen() {
-    uint8_t h  = this->player->getH();
-    int8_t y = this->player->gretY();
+void GameEngine::keepPlayerWithinScreen() {
+    uint8_t h = this->player->getH();
+    int8_t  y = this->player->getY();
 
     if (y < 0) {
-        this->player->setY(0)
+        this->player->setY(0);
         this->attachBallToPlayer();
     } else if (y + h > SCREEN_HEIGHT) {
-        this->player->setY(SCREEN_HEIGHT- h);
+        this->player->setY(SCREEN_HEIGHT - h);
         this->attachBallToPlayer();
     }
 }
 
-// Démarrer et arrêter le jeu
+// ---------------------------------------------------------
+// Starting and stopping the game
+// ---------------------------------------------------------
 
 void GameEngine::start() {
     this->throwBall();
-    this->mode = MODE_PLAY
+    this->mode = MODE_PLAY;
 }
+
+// ---------------------------------------------------------
+// Runtime control hook
+// ---------------------------------------------------------
 
 void GameEngine::tick() {
     this->controller->tick();
-    this->player->tick();
+    this->player->move();
 
     switch (this->mode) {
         case MODE_START:
-            this->attachBallTopPlayer();
+            this->attachBallToPlayer();
             break;
         case MODE_PLAY:
             this->ball->move();
             break;
     }
 
-    this->HandleScreenBounds();
+    this->handleScreenBounds();
     this->draw();
 }
+
+// ---------------------------------------------------------
+// Graphic rendering
+// ---------------------------------------------------------
 
 void GameEngine::draw() {
     gb.display.clear();

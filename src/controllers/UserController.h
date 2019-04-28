@@ -8,11 +8,11 @@ class GameEngine;
 
 class UserController
 {
-    private
+    private:
         GameEngine* game;
         Paddle* player;
 
-    public
+    public:
         UserController(GameEngine* game,Paddle* player);
         ~UserController();
 

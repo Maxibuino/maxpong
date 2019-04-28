@@ -1,30 +1,36 @@
 #include "Paddle.h"
 #include "../global/Constants.h"
 
-//Initialisation de la raquette
+// ---------------------------------------------------------
+// Paddle initialization
+// ---------------------------------------------------------
 
-Paddle::paddle(
+Paddle::Paddle(
     uint8_t w,
     uint8_t h,
-    int8_t x,
-    int8_t y,
-    int8_t vx,
-    int8_t vy) : DisplayObject(w, h, x, y, vx, vy, LIGHTBLUE) {}
+    int8_t  x,
+    int8_t  y,
+    int8_t  vx,
+    int8_t  vy) : DisplayObject(w, h, x, y, vx, vy, LIGHTBLUE) {}
 
-//Destructeur raquette
+// ---------------------------------------------------------
+// Paddle destruction
+// ---------------------------------------------------------
 
 Paddle::~Paddle() = default;
 
-//Commands de déplacement
+// ---------------------------------------------------------
+// Motion commands
+// ---------------------------------------------------------
 
-void Paddle::up(){
+void Paddle::up() {
     this->vy = -PADDLE_SPEED;
 }
 
-void Paddle::down(){
+void Paddle::down() {
     this->vy = PADDLE_SPEED;
 }
 
-void Paddle::stop(){
+void Paddle::stop() {
     this->vy = 0;
 }

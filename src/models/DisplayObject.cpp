@@ -20,29 +20,75 @@ DisplayObject::~DisplayObject() = default;
 
 //Acccesseurs
 //Hauteur
-uint8_t DisplayObject::getH() {}
-    return this ->h;
+
+// width
+uint8_t DisplayObject::getW() {
+    return this->w;
 }
 
-//Position verticale
+// height
+uint8_t DisplayObject::getH() {
+    return this->h;
+}
+
+// horizontal position
+int8_t DisplayObject::getX() {
+    return this->x;
+}
+
+// vertical position
 int8_t DisplayObject::getY() {
-    return this ->y;
+    return this->y;
 }
 
-//Mutateurs
-//Position verticale
-void DisplayObject::setY(int8_t y){
-    this ->y = y;
+// horizontal velocity
+int8_t DisplayObject::getVx() {
+    return this->vx;
 }
 
-//l'ancre tick
-void DisplayObject::tick() {
-    this->x += this->vy;
+// vertical velocity
+int8_t DisplayObject::getVy() {
+    return this->vy;
+}
+
+// ---------------------------------------------------------
+// Mutators
+// ---------------------------------------------------------
+
+// horizontal position
+void DisplayObject::setX(int8_t x) {
+    this->x = x;
+}
+
+// vertical position
+void DisplayObject::setY(int8_t y) {
+    this->y = y;
+}
+
+// horizontal velocity
+void DisplayObject::setVx(int8_t vx) {
+    this->vx = vx;
+}
+
+// vertical velocity
+void DisplayObject::setVy(int8_t vy) {
+    this->vy = vy;
+}
+
+// ---------------------------------------------------------
+// Motion handling
+// ---------------------------------------------------------
+
+void DisplayObject::move() {
+    this->x += this->vx;
     this->y += this->vy;
 }
 
-//rendement graphique
-void DisplayObject::draw(){
+// ---------------------------------------------------------
+// Graphic rendering
+// ---------------------------------------------------------
+
+void DisplayObject::draw() {
     gb.display.setColor(this->color);
     gb.display.fillRect(this->x, this->y, this->w, this->h);
 }

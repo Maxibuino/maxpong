@@ -38,15 +38,22 @@ class DisplayObject
     //Destructeur
     ~DisplayObject();
 
-    //Accesseurs
-    uint8_t getH();
-    int8_t getY();
+        //Accesseurs
+        uint8_t getW();  // width
+        uintx8_t getH();  // height
+        int8_t  getX();  // horizontal position
+        int8_t  getY();  // vertical position
+        int8_t  getVx(); // horizontal velocity
+        int8_t  getVy(); // vertical velocity
 
-    //Mutateurs
-    void setY(int8_t y);
+        //Mutateurs
+        void setX(int8_t x);   // horizontal position
+        void setY(int8_t y);   // vertical position
+        void setVx(int8_t vx); // horizontal velocity
+        void setVy(int8_t vy); // vertical velocity
 
-    void tick();
-    void draw();
+        void move(); // handles motion
+        void draw(); // graphic rendering
 
 };
 

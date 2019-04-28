@@ -34,17 +34,80 @@ GameEngine::~GameEngine() {
     delete this->player;
 }
 
+void attachBallToPlayer() {
+    uint8_t ph = this->player->getH();
+    int8_t py = this->player->getY();
+    uint8_t bh = this->ball->getH();
+    this->ball->setY(py + ((ph - bh) >> 1));
+}
+
+void GameEngine::throwBall() {
+    int8_t vx = 1 + random(BALL_H_SEEPD);
+    int8_t vy = (random(2) ? -1 : 1) * (1 + random(BALL_V_SEEPD));
+    this->ball->toss(vx, vy);
+}
+
 //Empêche la raquette de sortir de l'écran
 void GameEngine::handleScreenBounds(){
-    uint8_t h = this->player->getH();
-    int8_t y = this->player->getY();
-    if (y < 0) this->player->setY(0);
-    else if (y + h > SCREEN_HEIGHT) this->player->setY(SCREEN_HEIGHT - h);
+    this->keepPlayerWithinScreen();
+    if (this->mode == MODE_PLAY) {
+        this->keepBallWithinScreen();
+    }
+}
+
+void GameEngine::keepBallWithinScreen(){
+    uint8_t w = this->ball->getW();
+    uint8_t h = this->ball->getH();
+    int8_t x = this->ball->getX();
+    int8_t y = this->ball->getY();
+    int8_t vx = this->ball->getVx();
+    int8_t vy = this->ball->getVy();
+
+    if (x < 0 || x + w > SCREEN_WIDTH) {
+        this->ball->setX(x - vx);
+        this->ball->setVx(-vx);
+    }
+
+    if (x < 0 || y + h > SCREEN_HEIGHT) {
+        this->ball->setY(y - vy);
+        this->ball->setVy(-vy);
+    }
+
+}
+
+void GameEngine:::keepPlayerWithinScreen() {
+    uint8_t h  = this->player->getH();
+    int8_t y = this->player->gretY();
+
+    if (y < 0) {
+        this->player->setY(0)
+        this->attachBallToPlayer();
+    } else if (y + h > SCREEN_HEIGHT) {
+        this->player->setY(SCREEN_HEIGHT- h);
+        this->attachBallToPlayer();
+    }
+}
+
+// Démarrer et arrêter le jeu
+
+void GameEngine::start() {
+    this->throwBall();
+    this->mode = MODE_PLAY
 }
 
 void GameEngine::tick() {
     this->controller->tick();
     this->player->tick();
+
+    switch (this->mode) {
+        case MODE_START:
+            this->attachBallTopPlayer();
+            break;
+        case MODE_PLAY:
+            this->ball->move();
+            break;
+    }
+
     this->HandleScreenBounds();
     this->draw();
 }
@@ -52,4 +115,5 @@ void GameEngine::tick() {
 void GameEngine::draw() {
     gb.display.clear();
     this->player->draw();
+    this->ball->draw();
 }

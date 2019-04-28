@@ -2,14 +2,14 @@
 #include "../global/Constants.h"
 
 // ---------------------------------------------------------
-// Game engine initialization
+// Initialisation du moteur de jeu
 // ---------------------------------------------------------
 
-// predefined game modes
+// les modes de jeu
 const uint8_t GameEngine::MODE_START = 0;
 const uint8_t GameEngine::MODE_PLAY  = 1;
 
-// constructor
+// constructeur
 GameEngine::GameEngine() {
     this->mode = MODE_START;
 
@@ -31,7 +31,7 @@ GameEngine::GameEngine() {
 }
 
 // ---------------------------------------------------------
-// Game engine destruction
+// Destructeur du mode de jeu
 // ---------------------------------------------------------
 
 GameEngine::~GameEngine() {
@@ -97,7 +97,7 @@ void GameEngine::keepPlayerWithinScreen() {
 }
 
 // ---------------------------------------------------------
-// Starting and stopping the game
+// Commencer et stopper la partie
 // ---------------------------------------------------------
 
 void GameEngine::start() {
@@ -127,7 +127,7 @@ void GameEngine::tick() {
 }
 
 // ---------------------------------------------------------
-// Graphic rendering
+// Rendu graphique
 // ---------------------------------------------------------
 
 void GameEngine::draw() {

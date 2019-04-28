@@ -22,15 +22,15 @@ DisplayObject::DisplayObject(
 DisplayObject::~DisplayObject() = default;
 
 // ---------------------------------------------------------
-// Accessors
+//Accesseurs
 // ---------------------------------------------------------
 
-// width
+// largeur
 uint8_t DisplayObject::getW() {
     return this->w;
 }
 
-// height
+// hauteur
 uint8_t DisplayObject::getH() {
     return this->h;
 }
@@ -56,7 +56,7 @@ int8_t DisplayObject::getVy() {
 }
 
 // ---------------------------------------------------------
-// Mutators
+//Mutateurs
 // ---------------------------------------------------------
 
 // horizontal position

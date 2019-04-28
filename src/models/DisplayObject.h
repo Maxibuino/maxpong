@@ -23,7 +23,7 @@ class DisplayObject
 
     public:
 
-        // constructor
+        // constructeurr
         DisplayObject(
             uint8_t w,
             uint8_t h,
@@ -34,10 +34,10 @@ class DisplayObject
             Color   c = DISPLAY_DEFAULT_COLOR
         );
 
-        // destructor
+        // destructeurr
         ~DisplayObject();
 
-        // accessors
+        // accesseurs
         uint8_t getW();  // width
         uint8_t getH();  // height
         int8_t  getX();  // horizontal position
@@ -45,7 +45,7 @@ class DisplayObject
         int8_t  getVx(); // horizontal velocity
         int8_t  getVy(); // vertical velocity
 
-        // mutators
+        // mutateurs
         void setX(int8_t x);   // horizontal position
         void setY(int8_t y);   // vertical position
         void setVx(int8_t vx); // horizontal velocity

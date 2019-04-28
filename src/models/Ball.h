@@ -7,7 +7,7 @@ class Ball : public DisplayObject
 {
     public:
 
-        // constructor
+        // constructeurr
         Ball(
             uint8_t w,
             uint8_t h,
@@ -17,7 +17,7 @@ class Ball : public DisplayObject
             int8_t  vy = 0
         );
 
-        // destructor
+        // destructeurr
         ~Ball();
 
         // motion command

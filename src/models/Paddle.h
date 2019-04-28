@@ -7,7 +7,7 @@ class Paddle : public DisplayObject
 {
     public:
 
-        // constructor
+        // contructeur
         Paddle(
             uint8_t w,
             uint8_t h,
@@ -17,7 +17,7 @@ class Paddle : public DisplayObject
             int8_t  vy = 0
         );
 
-        // destructor
+        // destructeur
         ~Paddle();
 
         // motion commands
